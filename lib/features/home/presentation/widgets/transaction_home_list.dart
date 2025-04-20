@@ -77,7 +77,7 @@ class TransactionHomeList extends StatelessWidget {
   Widget build(BuildContext context) {
     final size = MediaQuery.of(context).size;
     return Container(
-      height: size.height / 2.5,
+      height: size.height / 2.8,
       width: size.width,
       padding: EdgeInsets.all(size.width * 0.04),
       decoration: BoxDecoration(

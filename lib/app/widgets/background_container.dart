@@ -1,9 +1,9 @@
-import 'package:fin_track/core/config/my_colors/my_colors.dart';
+import 'package:fin_track/core/constants/my_colors.dart';
 import 'package:flutter/material.dart';
 
-class HomeBackgroundContainer extends StatelessWidget {
+class BackgroundContainer extends StatelessWidget {
   final Widget child;
-  const HomeBackgroundContainer({super.key, required this.child});
+  const BackgroundContainer({super.key, required this.child});
 
   @override
   Widget build(BuildContext context) {
@@ -11,6 +11,10 @@ class HomeBackgroundContainer extends StatelessWidget {
     return Container(
       height: size.height,
       width: size.width,
+      padding: EdgeInsets.symmetric(
+        horizontal: size.width / 15,
+        vertical: size.height / 35,
+      ).copyWith(bottom: 0),
       decoration: BoxDecoration(
         gradient: LinearGradient(
           colors: MyColors.homeDradientColor,
