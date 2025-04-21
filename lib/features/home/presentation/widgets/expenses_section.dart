@@ -1,3 +1,4 @@
+import 'package:fin_track/core/constants/my_colors.dart';
 import 'package:flutter/material.dart';
 
 class ExpensesSection extends StatelessWidget {
@@ -9,7 +10,7 @@ class ExpensesSection extends StatelessWidget {
     return Container(
       padding: EdgeInsets.all(size.width * 0.04),
       decoration: BoxDecoration(
-        color: Colors.white.withAlpha((0.15 * 255).toInt()),
+        color: MyColors.homeCardColor,
         borderRadius: BorderRadius.circular(20),
       ),
       child: Column(
@@ -21,7 +22,7 @@ class ExpensesSection extends StatelessWidget {
             style: TextStyle(
               fontSize: size.width * 0.045,
               fontWeight: FontWeight.w400,
-              color: Colors.white70,
+              color: MyColors.lightTextColor,
             ),
           ),
           Text(
@@ -29,7 +30,7 @@ class ExpensesSection extends StatelessWidget {
             style: TextStyle(
               fontSize: size.width * 0.10,
               fontWeight: FontWeight.bold,
-              color: Colors.white,
+              color: MyColors.whiteColor,
             ),
           ),
           SizedBox(height: size.width * 0.05),
@@ -66,7 +67,7 @@ class ExpensesSection extends StatelessWidget {
           style: TextStyle(
             fontSize: size.width * 0.045,
             fontWeight: FontWeight.w500,
-            color: Colors.white70,
+            color: MyColors.lightTextColor,
           ),
         ),
         Text(
@@ -74,7 +75,7 @@ class ExpensesSection extends StatelessWidget {
           style: TextStyle(
             fontSize: size.width * 0.06,
             fontWeight: FontWeight.bold,
-            color: Colors.white,
+            color: MyColors.whiteColor,
           ),
         ),
       ],

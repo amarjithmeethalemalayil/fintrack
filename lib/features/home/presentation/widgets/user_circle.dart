@@ -1,3 +1,4 @@
+import 'package:fin_track/core/constants/my_colors.dart';
 import 'package:flutter/material.dart';
 
 class UserCircle extends StatelessWidget {
@@ -28,7 +29,7 @@ class UserCircle extends StatelessWidget {
               style: TextStyle(
                 fontSize: size.width * 0.04,
                 fontWeight: FontWeight.w400,
-                color: Colors.white70,
+                color: MyColors.lightTextColor,
               ),
             ),
             Text(
@@ -36,7 +37,7 @@ class UserCircle extends StatelessWidget {
               style: TextStyle(
                 fontSize: size.width * 0.06,
                 fontWeight: FontWeight.bold,
-                color: Colors.white,
+                color: MyColors.whiteColor,
               ),
             ),
           ],

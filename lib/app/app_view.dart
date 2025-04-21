@@ -9,6 +9,11 @@ class AppView extends StatelessWidget {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       title: 'FinTrack',
+      theme: ThemeData(
+        inputDecorationTheme: InputDecorationTheme(
+          hintStyle: TextStyle(color: Colors.white),
+        ),
+      ),
       home: const AppBottomNav(),
     );
   }

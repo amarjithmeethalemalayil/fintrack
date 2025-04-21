@@ -1,139 +1,109 @@
 import 'package:fin_track/app/widgets/background_container.dart';
+import 'package:fin_track/features/add_expenses/presentation/widgets/date_picker_container.dart';
+import 'package:fin_track/features/add_expenses/presentation/widgets/expense_add_box.dart';
+import 'package:fin_track/features/add_expenses/presentation/widgets/purpose_dropsown_list.dart';
 import 'package:flutter/material.dart';
 
-class AddExpensePage extends StatefulWidget {
-  const AddExpensePage({super.key});
+class AddExpensesPage extends StatefulWidget {
+  const AddExpensesPage({super.key});
 
   @override
-  State<AddExpensePage> createState() => _AddExpensePageState();
+  State<AddExpensesPage> createState() => _AddExpensesPageState();
 }
 
-class _AddExpensePageState extends State<AddExpensePage> {
+class _AddExpensesPageState extends State<AddExpensesPage> {
   final TextEditingController _amountController = TextEditingController();
-  DateTime? _selectedDate;
-  String? _selectedCategory;
+  final TextEditingController _dateController = TextEditingController();
+  String? selectedCategory;
 
-  final List<String> _categories = [
+  final List<String> categories = [
     'Food',
     'Transport',
     'Shopping',
     'Health',
-    'Other'
+    'Bills',
+    'Entertainment',
+    'Others',
   ];
 
-  void _pickDate(BuildContext context) async {
-    final picked = await showDatePicker(
+  Future<void> _selectDate(BuildContext context) async {
+    final DateTime? picked = await showDatePicker(
       context: context,
       initialDate: DateTime.now(),
-      firstDate: DateTime(2020),
+      firstDate: DateTime(1900),
       lastDate: DateTime(2100),
     );
     if (picked != null) {
       setState(() {
-        _selectedDate = picked;
+        _dateController.text = "${picked.toLocal()}".split(' ')[0];
       });
     }
   }
 
   @override
   Widget build(BuildContext context) {
-    final width = MediaQuery.of(context).size.width;
-    final height = MediaQuery.of(context).size.height;
-
+    final size = MediaQuery.of(context).size;
+    final screenWidth = size.width;
+    final screenHeight = size.height;
+    final fontSize = screenWidth * 0.08;
     return Scaffold(
+      appBar: AppBar(
+        title: const Text('Add Expenses'),
+        backgroundColor: Colors.transparent,
+        elevation: 0,
+        centerTitle: true,
+        titleTextStyle: TextStyle(
+          fontSize: size.width * 0.05,
+          fontWeight: FontWeight.bold,
+          color: Colors.white,
+        ),
+        iconTheme: const IconThemeData(color: Colors.white),
+      ),
+      extendBodyBehindAppBar: true,
       body: BackgroundContainer(
         child: SafeArea(
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              TextField(
-                controller: _amountController,
-                keyboardType: TextInputType.number,
-                decoration: InputDecoration(
-                  labelText: 'Amount',
-                  prefixIcon: const Icon(Icons.attach_money),
-                  border: OutlineInputBorder(
-                    borderRadius: BorderRadius.circular(width * 0.03),
-                  ),
-                ),
-              ),
-              SizedBox(height: height * 0.02),
-              DropdownButtonFormField<String>(
-                value: _selectedCategory,
-                items: _categories.map((category) {
-                  return DropdownMenuItem(
-                    value: category,
-                    child: Text(category),
-                  );
-                }).toList(),
-                decoration: InputDecoration(
-                  labelText: 'Category',
-                  prefixIcon: const Icon(Icons.category),
-                  border: OutlineInputBorder(
-                    borderRadius: BorderRadius.circular(width * 0.03),
-                  ),
-                ),
-                onChanged: (value) {
-                  setState(() {
-                    _selectedCategory = value;
-                  });
-                },
-              ),
-              SizedBox(height: height * 0.02),
-              GestureDetector(
-                onTap: () => _pickDate(context),
-                child: Container(
-                  padding: EdgeInsets.symmetric(
-                      horizontal: width * 0.04, vertical: height * 0.018),
-                  decoration: BoxDecoration(
-                    border: Border.all(color: Colors.grey),
-                    borderRadius: BorderRadius.circular(width * 0.03),
-                  ),
-                  child: Row(
-                    children: [
-                      const Icon(Icons.calendar_today),
-                      SizedBox(width: width * 0.03),
-                      Text(
-                        _selectedDate == null
-                            ? 'Pick a Date'
-                            : '${_selectedDate!.day}/${_selectedDate!.month}/${_selectedDate!.year}',
-                        style: TextStyle(fontSize: width * 0.04),
-                      ),
-                    ],
-                  ),
-                ),
-              ),
-              SizedBox(height: height * 0.02),
-              SizedBox(
-                width: double.infinity,
-                height: height * 0.07,
-                child: ElevatedButton.icon(
-                  onPressed: () {
-                    if (_amountController.text.isNotEmpty &&
-                        _selectedCategory != null &&
-                        _selectedDate != null) {
-                      // Submit logic here
-                      ScaffoldMessenger.of(context).showSnackBar(
-                        const SnackBar(content: Text('Expense Added')),
-                      );
-                    } else {
-                      ScaffoldMessenger.of(context).showSnackBar(
-                        const SnackBar(
-                            content: Text('Please complete all fields')),
-                      );
-                    }
+          child: SingleChildScrollView(
+            padding: EdgeInsets.symmetric(vertical: screenHeight * 0.09),
+            child: Column(
+              children: [
+                ExpenseAddBox(controller: _amountController),
+                SizedBox(height: screenHeight * 0.03),
+                CustomDropdownList(
+                  selectedItem: selectedCategory,
+                  items: categories,
+                  hintText: 'Select Category',
+                  onChanged: (value) {
+                    setState(() {
+                      selectedCategory = value;
+                    });
                   },
-                  icon: const Icon(Icons.add),
-                  label: const Text("Add Expense"),
-                  style: ElevatedButton.styleFrom(
-                    textStyle: TextStyle(
-                      fontSize: width * 0.045,
-                      fontWeight: FontWeight.bold,
+                ),
+                SizedBox(height: screenHeight * 0.02),
+                DatePickerContainer(
+                  dateController: _dateController,
+                  onTap: () => _selectDate(context),
+                ),
+                SizedBox(height: screenHeight * 0.05),
+                Container(
+                  width: screenWidth * 0.6,
+                  height: screenHeight * 0.08,
+                  decoration: BoxDecoration(
+                    color: Colors.deepPurple,
+                    borderRadius: BorderRadius.circular(20),
+                  ),
+                  child: Center(
+                    child: Text(
+                      "Add Expense",
+                      style: TextStyle(
+                        color: Colors.white,
+                        fontSize: fontSize * 0.6,
+                        fontWeight: FontWeight.bold,
+                      ),
                     ),
                   ),
                 ),
-              )
-            ],
+              ],
+            ),
           ),
         ),
       ),

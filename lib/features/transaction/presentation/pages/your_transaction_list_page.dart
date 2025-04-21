@@ -1,5 +1,5 @@
-import 'package:fin_track/app/widgets/background_container.dart';
-import 'package:fin_track/features/transaction/presentation/widgets/transaction_header_text.dart';
+import 'package:fin_track/core/constants/my_colors.dart';
+import 'package:fin_track/features/transaction/presentation/widgets/transaction_box.dart';
 import 'package:flutter/material.dart';
 
 class YourTransactionListPage extends StatelessWidget {
@@ -7,13 +7,39 @@ class YourTransactionListPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final size = MediaQuery.of(context).size;
+
     return Scaffold(
-      body: BackgroundContainer(
+      extendBodyBehindAppBar: true,
+      appBar: AppBar(
+        title: const Text('Your Transactions'),
+        backgroundColor: MyColors.transparentColor,
+        elevation: 0,
+        centerTitle: true,
+        titleTextStyle: TextStyle(
+          fontSize: size.width * 0.05,
+          fontWeight: FontWeight.bold,
+          color: MyColors.whiteColor,
+        ),
+        iconTheme: IconThemeData(color: MyColors.whiteColor),
+      ),
+      body: Container(
+        decoration: BoxDecoration(
+          gradient: LinearGradient(
+            colors: MyColors.homeDradientColor,
+            begin: Alignment.topLeft,
+            end: Alignment.bottomRight,
+          ),
+        ),
         child: SafeArea(
-          child: Column(
-            children: [
-              TransactionHeaderText(),
-            ],
+          child: Padding(
+            padding: EdgeInsets.all(size.width * 0.05),
+            child: ListView.builder(
+              itemCount: 5,
+              itemBuilder: (context, index) {
+                return TransactionBox();
+              },
+            ),
           ),
         ),
       ),

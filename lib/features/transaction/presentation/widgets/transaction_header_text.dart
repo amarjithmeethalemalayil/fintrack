@@ -1,3 +1,4 @@
+import 'package:fin_track/core/constants/my_colors.dart';
 import 'package:flutter/material.dart';
 
 class TransactionHeaderText extends StatelessWidget {
@@ -11,7 +12,7 @@ class TransactionHeaderText extends StatelessWidget {
       style: TextStyle(
         fontSize: size.width * 0.06,
         fontWeight: FontWeight.bold,
-        color: Colors.white,
+        color: MyColors.whiteColor,
       ),
     );
   }

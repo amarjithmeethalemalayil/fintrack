@@ -1,13 +1,7 @@
+import 'package:fin_track/core/constants/my_colors.dart';
 import 'package:flutter/material.dart';
 
-final healthColor = Color.fromARGB(255, 76, 175, 80);
-final foodColor = Color.fromARGB(255, 227, 204, 5);
-final shoppingColor = Color.fromARGB(255, 33, 150, 243);
-final movieRentColor = Color.fromARGB(255, 255, 87, 34);
-final utilitiesColor = Color.fromARGB(255, 3, 169, 244);
-final transportColor = Color.fromARGB(255, 255, 152, 0);
-final subscriptionsColor = Color.fromARGB(255, 156, 39, 176);
-final savingsColor = Color.fromARGB(255, 0, 150, 136);
+
 
 
   final List<Map<String, dynamic>> transactions = [
@@ -16,56 +10,56 @@ final savingsColor = Color.fromARGB(255, 0, 150, 136);
       'subtitle': 'Today',
       'amount': '500',
       'icon': Icons.restaurant,
-      'color': foodColor,
+      'color': MyColors.foodColor,
     },
     {
       'title': 'Shopping',
       'subtitle': 'Yesterday',
       'amount': '2000',
       'icon': Icons.shopping_cart,
-      'color': shoppingColor,
+      'color': MyColors.shoppingColor,
     },
     {
       'title': 'Movie Rent',
       'subtitle': 'Last Week',
       'amount': '800',
       'icon': Icons.movie,
-      'color': movieRentColor,
+      'color': MyColors.redColor,
     },
     {
       'title': 'Health',
       'subtitle': 'Yesterday',
       'amount': '1200',
       'icon': Icons.local_hospital,
-      'color': healthColor,
+      'color': MyColors.greenColor,
     },
     {
       'title': 'Transport',
       'subtitle': 'Today',
       'amount': '150',
       'icon': Icons.directions_car,
-      'color': transportColor,
+      'color': MyColors.transportColor,
     },
     {
       'title': 'Utilities',
       'subtitle': 'This Month',
       'amount': '700',
       'icon': Icons.water_damage,
-      'color': utilitiesColor,
+      'color': MyColors.utilitiesColor,
     },
     {
       'title': 'Subscriptions',
       'subtitle': 'Monthly',
       'amount': '500',
       'icon': Icons.subscriptions,
-      'color': subscriptionsColor,
+      'color': MyColors.subscriptionsColor,
     },
     {
       'title': 'Savings',
       'subtitle': 'Deposit',
       'amount': '1000',
       'icon': Icons.savings,
-      'color': savingsColor,
+      'color': MyColors.savingsColor,
     },
   ];
 
@@ -81,7 +75,7 @@ class TransactionHomeList extends StatelessWidget {
       width: size.width,
       padding: EdgeInsets.all(size.width * 0.04),
       decoration: BoxDecoration(
-        color: const Color.fromARGB(60, 0, 0, 0),
+        color: MyColors.transactionHomeListColor,
         borderRadius: BorderRadius.circular(20),
       ),
       child: Column(
@@ -95,7 +89,7 @@ class TransactionHomeList extends StatelessWidget {
                 style: TextStyle(
                   fontSize: size.width * 0.05,
                   fontWeight: FontWeight.bold,
-                  color: Colors.white,
+                  color: MyColors.whiteColor,
                 ),
               ),
               Text(
@@ -103,7 +97,7 @@ class TransactionHomeList extends StatelessWidget {
                 style: TextStyle(
                   fontSize: size.width * 0.038,
                   fontWeight: FontWeight.w500,
-                  color: Colors.white70,
+                  color: MyColors.lightTextColor,
                 ),
               ),
             ],
@@ -147,7 +141,7 @@ class TransactionHomeList extends StatelessWidget {
             backgroundColor: circleColor,
             child: Icon(
               icon,
-              color: Colors.black,
+              color: MyColors.balckColor,
             ),
           ),
           SizedBox(width: size.width * 0.04),
@@ -158,7 +152,7 @@ class TransactionHomeList extends StatelessWidget {
                 title,
                 style: TextStyle(
                   fontSize: size.width * 0.042,
-                  color: Colors.white,
+                  color: MyColors.whiteColor,
                   fontWeight: FontWeight.w500,
                 ),
               ),
@@ -166,7 +160,7 @@ class TransactionHomeList extends StatelessWidget {
                 subtitle,
                 style: TextStyle(
                   fontSize: size.width * 0.034,
-                  color: Colors.white60,
+                  color: MyColors.lightTextColor,
                 ),
               ),
             ],
@@ -177,7 +171,7 @@ class TransactionHomeList extends StatelessWidget {
             style: TextStyle(
               fontSize: size.width * 0.045,
               fontWeight: FontWeight.bold,
-              color: Colors.redAccent,
+              color: MyColors.redColor,
             ),
           )
         ],

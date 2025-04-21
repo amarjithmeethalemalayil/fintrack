@@ -5,6 +5,6 @@ import 'package:flutter/material.dart';
 
 final List<Widget> bottomNavWidgetList = const [
   HomePage(),
-  AddExpensePage(),
+  AddExpensesPage(),
   TransactionPage(),
 ];
